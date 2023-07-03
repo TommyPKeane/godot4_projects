@@ -12,7 +12,6 @@ This repo is specifically using the 4.x version of the application, and the asso
     - [Quick Summary of License](#quick-summary-of-license)
     - [Why _this_ License?](#why-this-license)
 - [References](#references)
-- [- https://godotengine.org/](#--httpsgodotengineorg)
 
 <!-- /MarkdownTOC -->
 
@@ -24,7 +23,7 @@ This section covers the summaries and links for the projects that exist in this 
 <a id="tofu-fl%C3%A2neur"></a>
 ### Tofu Flâneur
 
-This is my first game project with Godot, using Pixel Graphics I've created through [Aseprite](https://www.aseprite.org/) and/or [Pixaki], which I've made on macOS or iPadOS.
+This is my first game project with Godot, using Pixel Graphics I've created through [Aseprite](https://www.aseprite.org/) and/or [Pixaki](https://pixaki.com/), which I've made on macOS or iPadOS.
 
 ![Tofu Stunned Sprite Sheet (7 Frames)](./TofuFlaneur/characters/tofu/tofu-20230417-stunned.png)
 
@@ -62,4 +61,5 @@ So you're free to clone this repo locally and look around and learn from it, as 
 
 <a id="--httpsgodotengineorg"></a>
 - https://godotengine.org/
--
+- https://www.aseprite.org/
+- https://pixaki.com/
