@@ -1,14 +1,15 @@
 [gd_scene load_steps=4 format=3 uid="uid://bcq04ffyaufaf"]
 
-[ext_resource type="Script" path="res://maingamenode.gd" id="1_7dfl2"]
-[ext_resource type="Script" path="res://HUD.gd" id="2_psa2n"]
-[ext_resource type="PackedScene" uid="uid://coo3lrmajxw2q" path="res://tofu.tscn" id="3_ofir7"]
+[ext_resource type="Script" path="res://_main/maingamenode.gd" id="1_dyg3p"]
+[ext_resource type="Script" path="res://_scenes/HUD.gd" id="2_admha"]
+[ext_resource type="PackedScene" uid="uid://coo3lrmajxw2q" path="res://_scenes/tofu.tscn" id="3_ofir7"]
 
 [node name="MainGame" type="Node"]
-script = ExtResource("1_7dfl2")
+editor_description = "Main Game Entry/Management Script"
+script = ExtResource("1_dyg3p")
 
 [node name="HUD" type="CanvasLayer" parent="."]
-script = ExtResource("2_psa2n")
+script = ExtResource("2_admha")
 
 [node name="StartButton" type="Button" parent="HUD"]
 offset_left = 496.0

@@ -172,8 +172,9 @@ disabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_a3y5v")
-animation = &"stunned"
-frame_progress = 0.841283
+animation = &"walk"
+frame = 5
+frame_progress = 0.906148
 offset = Vector2(64, 64)
 
 [node name="StunnedTimer" type="Timer" parent="."]

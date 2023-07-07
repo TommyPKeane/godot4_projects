@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-const SPEED = 300.0
+const SPEED = 50.0  # [pixels]/[frame]
 const JUMP_VELOCITY = -400.0
 var screen_size: Vector2
 var user_action_state: Actions
