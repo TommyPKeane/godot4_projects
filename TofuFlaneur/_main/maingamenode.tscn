@@ -1,29 +1,159 @@
-[gd_scene load_steps=4 format=3 uid="uid://bcq04ffyaufaf"]
+[gd_scene load_steps=18 format=3 uid="uid://bcq04ffyaufaf"]
 
 [ext_resource type="Script" path="res://_main/maingamenode.gd" id="1_dyg3p"]
-[ext_resource type="Script" path="res://_scenes/HUD.gd" id="2_admha"]
+[ext_resource type="PackedScene" uid="uid://0lg3lutxbgd2" path="res://menus/main_menu.tscn" id="2_35ctn"]
 [ext_resource type="PackedScene" uid="uid://coo3lrmajxw2q" path="res://_scenes/tofu.tscn" id="3_ofir7"]
+[ext_resource type="Texture2D" uid="uid://blq7khu1mfsdr" path="res://menus/MainTitleBackground.tres" id="4_0x4jy"]
+[ext_resource type="Texture2D" uid="uid://bbvuh0hplwvkb" path="res://menus/tofuflaneur-title-20230704-001.png" id="4_s3sj7"]
+[ext_resource type="PackedScene" uid="uid://cctvy74eisv72" path="res://menus/options_window.tscn" id="6_m61dd"]
+[ext_resource type="Script" path="res://menus/options_window.gd" id="7_4mgxy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_etv4f"]
+atlas = ExtResource("4_s3sj7")
+region = Rect2(0, 0, 640, 480)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wqn54"]
+atlas = ExtResource("4_s3sj7")
+region = Rect2(640, 0, 640, 480)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u0rb0"]
+atlas = ExtResource("4_s3sj7")
+region = Rect2(1280, 0, 640, 480)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0x8ng"]
+atlas = ExtResource("4_s3sj7")
+region = Rect2(1920, 0, 640, 480)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3jrqm"]
+atlas = ExtResource("4_s3sj7")
+region = Rect2(2560, 0, 640, 480)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pp5p1"]
+atlas = ExtResource("4_s3sj7")
+region = Rect2(3200, 0, 640, 480)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mqxdn"]
+atlas = ExtResource("4_s3sj7")
+region = Rect2(3840, 0, 640, 480)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snkt7"]
+atlas = ExtResource("4_s3sj7")
+region = Rect2(4480, 0, 640, 480)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x2law"]
+atlas = ExtResource("4_s3sj7")
+region = Rect2(5120, 0, 640, 480)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fsik8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_etv4f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wqn54")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u0rb0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0x8ng")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3jrqm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pp5p1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mqxdn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snkt7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x2law")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 9.0
+}]
 
 [node name="MainGame" type="Node"]
 editor_description = "Main Game Entry/Management Script"
 script = ExtResource("1_dyg3p")
 
-[node name="HUD" type="CanvasLayer" parent="."]
-script = ExtResource("2_admha")
+[node name="MainMenu" parent="." instance=ExtResource("2_35ctn")]
 
-[node name="StartButton" type="Button" parent="HUD"]
-offset_left = 496.0
-offset_top = 284.0
-offset_right = 589.0
-offset_bottom = 361.0
-text = "Y'all silly?
-Just Gonna
-Send It"
+[node name="TextureRect" type="TextureRect" parent="MainMenu"]
+visible = false
+z_index = -100
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_0x4jy")
+expand_mode = 3
+stretch_mode = 3
 
-[node name="Tofu" parent="." instance=ExtResource("3_ofir7")]
+[node name="GameTitle" type="AnimatedSprite2D" parent="MainMenu"]
+visible = false
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_fsik8")
+animation = &"idle"
 
-[node name="UserStartPosition" type="Marker2D" parent="."]
+[node name="MenuButtons" type="VBoxContainer" parent="MainMenu"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -64.0
+offset_right = 128.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="StartButton" type="Button" parent="MainMenu/MenuButtons"]
+layout_mode = 2
+action_mode = 0
+text = "Just Gotta Send It"
+
+[node name="OptionsButton" type="Button" parent="MainMenu/MenuButtons"]
+layout_mode = 2
+text = "Game Config"
+
+[node name="QuitButton" type="Button" parent="MainMenu/MenuButtons"]
+layout_mode = 2
+text = "Leave Me Be, Spectre"
+
+[node name="OptionsWindow" parent="." instance=ExtResource("6_m61dd")]
+disable_3d = true
+snap_2d_transforms_to_pixel = true
+initial_position = 1
+title = "Game Config"
+size = Vector2i(640, 640)
+visible = false
+unresizable = true
+popup_window = true
+script = ExtResource("7_4mgxy")
+
+[node name="OptionsContainer" type="VBoxContainer" parent="OptionsWindow"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="2DGame" type="Node2D" parent="."]
+
+[node name="Tofu" parent="2DGame" instance=ExtResource("3_ofir7")]
+
+[node name="UserStartPosition" type="Marker2D" parent="2DGame"]
 position = Vector2(89, 500)
 
-[connection signal="start_game" from="HUD" to="." method="new_game"]
-[connection signal="pressed" from="HUD/StartButton" to="HUD" method="_on_StartButton_pressed"]
+[connection signal="pressed" from="MainMenu/MenuButtons/StartButton" to="." method="new_game"]
+[connection signal="pressed" from="MainMenu/MenuButtons/OptionsButton" to="." method="open_options_menu"]
+[connection signal="pressed" from="MainMenu/MenuButtons/QuitButton" to="." method="quit_game"]
+[connection signal="close_requested" from="OptionsWindow" to="." method="close_options_menu"]

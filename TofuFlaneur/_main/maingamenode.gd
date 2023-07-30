@@ -1,8 +1,5 @@
 extends Node
 
-@export var mob_scene: PackedScene
-@export var ScoreType: UserScore
-
 enum UserScore {
 	AVOIDED,
 	BOTHERED,
@@ -13,6 +10,7 @@ enum UserScore {
 }
 
 var user_score: Dictionary
+var game_options: Dictionary
 
 func _reset_user_score():
 	user_score = {
@@ -29,13 +27,45 @@ func modify_user_score(score_type: UserScore, offset: int):
 	user_score[score_type] += offset 
 	return
 
-func game_over():
-	$HUD.show_game_over(user_score)
-	# $Music.stop()
-	# $DeathSound.play()
-
 func new_game():
 	_reset_user_score()
-	$HUD.update_score(user_score)
+	$MainMenu.hide()
 	$Tofu.initialize($UserStartPosition.position)
 	# $Music.play()
+	return
+
+func game_over():
+	return
+	
+func open_options_menu():
+	$MainMenu.hide()
+	$OptionsWindow.show()
+	$OptionsWindow.position = Vector2(get_viewport().size / 2) - Vector2($OptionsWindow.size / 2)
+	var size_info = {
+		"viewport": {
+			"size": get_viewport().size,
+			"position": get_viewport().position,
+		},
+		"options": {
+			"size": $OptionsWindow.size,
+			"position": $OptionsWindow.position,
+		},
+	}
+	print(size_info)
+	return
+
+func close_options_menu():
+	$OptionsWindow.hide()
+	$MainMenu.show()
+	return
+
+func quit_game():
+	get_tree().quit()
+	return
+
+func _notification(what):
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		get_tree().quit() # default behavior
+	else:
+		pass
+	return

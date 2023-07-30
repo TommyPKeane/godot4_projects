@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://dq064uieal4ox"]
+[gd_scene load_steps=2 format=3 uid="uid://klgmixps3sfj"]
 
 [ext_resource type="Script" path="res://mainwindow.gd" id="1_hr5eg"]
 
@@ -10,4 +10,6 @@ size = Vector2i(1280, 960)
 unresizable = true
 borderless = true
 extend_to_title = true
+content_scale_mode = 2
+content_scale_aspect = 1
 script = ExtResource("1_hr5eg")
