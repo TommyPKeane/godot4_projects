@@ -165,12 +165,14 @@ animations = [{
 
 [node name="Tofu" type="CharacterBody2D"]
 script = ExtResource("1_hch5a")
+metadata/position = Vector2(0, 0)
+metadata/velocity = Vector2(0, 0)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+[node name="TofuCollisionPolygon" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(0, 0, 128, 2.08165e-12, 128, 128, 2.08165e-12, 128)
 disabled = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="TofuSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_a3y5v")
 animation = &"walk"
 frame = 5

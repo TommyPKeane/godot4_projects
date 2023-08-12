@@ -12,6 +12,10 @@ enum UserScore {
 var user_score: Dictionary
 var game_options: Dictionary
 
+func _ready():
+	$MainMenu.show()
+	return
+
 func _reset_user_score():
 	user_score = {
 		UserScore.AVOIDED: 0,
@@ -29,18 +33,17 @@ func modify_user_score(score_type: UserScore, offset: int):
 
 func new_game():
 	_reset_user_score()
-	$MainMenu.hide()
-	$Tofu.initialize($UserStartPosition.position)
-	# $Music.play()
+	$"MainMenu".hide()
+	$"2DGame".start()
 	return
 
 func game_over():
 	return
 	
 func open_options_menu():
-	$MainMenu.hide()
-	$OptionsWindow.show()
-	$OptionsWindow.position = Vector2(get_viewport().size / 2) - Vector2($OptionsWindow.size / 2)
+	$"MainMenu".hide()
+	$"OptionsWindow".show()
+	$"OptionsWindow".position = Vector2(get_viewport().size / 2) - Vector2($OptionsWindow.size / 2)
 	var size_info = {
 		"viewport": {
 			"size": get_viewport().size,

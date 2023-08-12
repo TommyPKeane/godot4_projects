@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bcq04ffyaufaf"]
+[gd_scene load_steps=19 format=3 uid="uid://bcq04ffyaufaf"]
 
 [ext_resource type="Script" path="res://_main/maingamenode.gd" id="1_dyg3p"]
 [ext_resource type="PackedScene" uid="uid://0lg3lutxbgd2" path="res://menus/main_menu.tscn" id="2_35ctn"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bbvuh0hplwvkb" path="res://menus/tofuflaneur-title-20230704-001.png" id="4_s3sj7"]
 [ext_resource type="PackedScene" uid="uid://cctvy74eisv72" path="res://menus/options_window.tscn" id="6_m61dd"]
 [ext_resource type="Script" path="res://menus/options_window.gd" id="7_4mgxy"]
+[ext_resource type="Script" path="res://_main/2DGame.gd" id="7_qtf5q"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_etv4f"]
 atlas = ExtResource("4_s3sj7")
@@ -76,7 +77,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 9.0
+"speed": 3.0
 }]
 
 [node name="MainGame" type="Node"]
@@ -84,9 +85,9 @@ editor_description = "Main Game Entry/Management Script"
 script = ExtResource("1_dyg3p")
 
 [node name="MainMenu" parent="." instance=ExtResource("2_35ctn")]
+visible = false
 
 [node name="TextureRect" type="TextureRect" parent="MainMenu"]
-visible = false
 z_index = -100
 anchors_preset = 15
 anchor_right = 1.0
@@ -98,13 +99,11 @@ expand_mode = 3
 stretch_mode = 3
 
 [node name="GameTitle" type="AnimatedSprite2D" parent="MainMenu"]
-visible = false
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_fsik8")
 animation = &"idle"
 
 [node name="MenuButtons" type="VBoxContainer" parent="MainMenu"]
-visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -147,13 +146,17 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="2DGame" type="Node2D" parent="."]
+script = ExtResource("7_qtf5q")
 
 [node name="Tofu" parent="2DGame" instance=ExtResource("3_ofir7")]
 
 [node name="UserStartPosition" type="Marker2D" parent="2DGame"]
 position = Vector2(89, 500)
 
+[connection signal="visibility_changed" from="MainMenu" to="MainMenu" method="on_toggle_visibility"]
 [connection signal="pressed" from="MainMenu/MenuButtons/StartButton" to="." method="new_game"]
 [connection signal="pressed" from="MainMenu/MenuButtons/OptionsButton" to="." method="open_options_menu"]
 [connection signal="pressed" from="MainMenu/MenuButtons/QuitButton" to="." method="quit_game"]
 [connection signal="close_requested" from="OptionsWindow" to="." method="close_options_menu"]
+
+[editable path="2DGame/Tofu"]

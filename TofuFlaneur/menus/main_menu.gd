@@ -5,26 +5,18 @@ signal open_options_menu
 signal quit_game
 
 
-func update_score(score):
-	# $ScoreLabel.text = str(score)
-	# print(score)
+func on_toggle_visibility():
+	if self.visible:
+		show_main_menu()
+	else:
+		hide_main_menu()
 	return
 
-
-func _on_start_button_pressed():
-	start_game.emit()
+func hide_main_menu():
+	$GameTitle.stop()
 	return
-
-func _on_options_button_pressed():
-	open_options_menu.emit()
-	return
-
-func _on_quit_button_pressed():
-	quit_game.emit()
-	return
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
+	
+func show_main_menu():
 	$TextureRect.show()
 	var title_animation_size = $GameTitle.sprite_frames.get_frame_texture("idle",0).get_size()
 	$GameTitle.position = Vector2(
@@ -34,15 +26,24 @@ func _ready():
 	$GameTitle.show()
 	$GameTitle.play("idle")
 	$MenuButtons.show()
-	pass # Replace with function body.
+	return
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	on_toggle_visibility()
+	return
 
 func _notification(what):
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		get_tree().quit() # default behavior
+	else:
+		pass
+	return
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+	return
 
 func show_game_over(score):
 	print("Game Over")
