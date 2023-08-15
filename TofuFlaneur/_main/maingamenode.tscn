@@ -133,8 +133,8 @@ text = "Leave Me Be, Spectre"
 [node name="OptionsWindow" parent="." instance=ExtResource("6_m61dd")]
 disable_3d = true
 snap_2d_transforms_to_pixel = true
-initial_position = 1
 title = "Game Config"
+initial_position = 1
 size = Vector2i(640, 640)
 visible = false
 unresizable = true

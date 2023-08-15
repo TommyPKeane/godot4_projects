@@ -13,11 +13,11 @@ config_version=5
 config/name="TofuFlaneur"
 config/description="Play as an inquisitively myopic block of Tofu (Soybean Curd) trying to survive and thrive in a universe of ... um, like ... a bunch of other bug people and plant people and all the kinds of pixelated peoples, or something like that."
 run/main_scene="res://_main/maingamenode.tscn"
-config/features=PackedStringArray("4.0", "Forward Plus")
+config/features=PackedStringArray("4.1", "Forward Plus")
 boot_splash/show_image=false
 boot_splash/fullsize=false
 boot_splash/use_filter=false
-config/icon="res://icon.svg"
+config/icon="res://_main/icon.svg"
 
 [display]
 
