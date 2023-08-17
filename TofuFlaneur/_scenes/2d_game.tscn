@@ -10,3 +10,9 @@ visible = false
 [node name="UserStartPosition" type="Marker2D" parent="."]
 visible = false
 position = Vector2(89, 500)
+
+[node name="BackgroundFar" type="ParallaxBackground" parent="."]
+
+[node name="BackgroundMiddle" type="ParallaxBackground" parent="."]
+
+[node name="BackgroundNear" type="ParallaxBackground" parent="."]

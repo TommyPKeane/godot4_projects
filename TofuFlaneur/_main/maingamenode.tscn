@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bcq04ffyaufaf"]
+[gd_scene load_steps=38 format=3 uid="uid://bcq04ffyaufaf"]
 
 [ext_resource type="Script" path="res://_main/maingamenode.gd" id="1_dyg3p"]
 [ext_resource type="PackedScene" uid="uid://0lg3lutxbgd2" path="res://menus/main_menu.tscn" id="2_35ctn"]
@@ -8,6 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://cctvy74eisv72" path="res://menus/options_window.tscn" id="6_m61dd"]
 [ext_resource type="Script" path="res://menus/options_window.gd" id="7_4mgxy"]
 [ext_resource type="Script" path="res://_main/2DGame.gd" id="7_qtf5q"]
+[ext_resource type="Texture2D" uid="uid://cpevu0o3lgl2o" path="res://items/cashew.png" id="9_j71nk"]
+[ext_resource type="Texture2D" uid="uid://bntag7axrhcb0" path="res://items/almond.png" id="9_s2cd6"]
+[ext_resource type="Texture2D" uid="uid://l82q2kn2dy3v" path="res://items/acorn.png" id="9_v2kix"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_etv4f"]
 atlas = ExtResource("4_s3sj7")
@@ -78,6 +81,121 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 3.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0bjoy"]
+atlas = ExtResource("9_j71nk")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1vk72"]
+atlas = ExtResource("9_j71nk")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nr5hl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0bjoy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1vk72")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rnmgu"]
+atlas = ExtResource("9_v2kix")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2jdcr"]
+atlas = ExtResource("9_v2kix")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r31tp"]
+atlas = ExtResource("9_v2kix")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dp52u"]
+atlas = ExtResource("9_v2kix")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gytjb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rnmgu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2jdcr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r31tp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dp52u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5j4cg"]
+atlas = ExtResource("9_s2cd6")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tj4ty"]
+atlas = ExtResource("9_s2cd6")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5pjb3"]
+atlas = ExtResource("9_s2cd6")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y63q2"]
+atlas = ExtResource("9_s2cd6")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_djnia"]
+atlas = ExtResource("9_s2cd6")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1nuy6"]
+atlas = ExtResource("9_s2cd6")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fgevc"]
+atlas = ExtResource("9_s2cd6")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o4l3h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5j4cg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tj4ty")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5pjb3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y63q2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_djnia")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1nuy6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fgevc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
 }]
 
 [node name="MainGame" type="Node"]
@@ -152,6 +270,30 @@ script = ExtResource("7_qtf5q")
 
 [node name="UserStartPosition" type="Marker2D" parent="2DGame"]
 position = Vector2(89, 500)
+
+[node name="ItemCashew" type="StaticBody2D" parent="2DGame"]
+
+[node name="CashewCollisionPoly" type="CollisionPolygon2D" parent="2DGame/ItemCashew"]
+polygon = PackedVector2Array(-15, -12, 1, -14, 7, -6, 7, 1, 15, 2, 16, 14, 0, 15, -15, 8)
+
+[node name="CashewSprite" type="AnimatedSprite2D" parent="2DGame/ItemCashew"]
+sprite_frames = SubResource("SpriteFrames_nr5hl")
+
+[node name="ItemAcorn" type="StaticBody2D" parent="2DGame"]
+
+[node name="AcornCollisionPoly" type="CollisionPolygon2D" parent="2DGame/ItemAcorn"]
+polygon = PackedVector2Array(-16, -11, -1, -17, 16, -10, 11, 15, 1, 17, -12, 14)
+
+[node name="AcornSprite" type="AnimatedSprite2D" parent="2DGame/ItemAcorn"]
+sprite_frames = SubResource("SpriteFrames_gytjb")
+
+[node name="ItemAlmond" type="StaticBody2D" parent="2DGame"]
+
+[node name="AlmondCollisionPoly" type="CollisionPolygon2D" parent="2DGame/ItemAlmond"]
+polygon = PackedVector2Array(-14, -6, -11, -14, 0, -17, 9, -14, 14, -6, 9, 9, -1, 16, -10, 6)
+
+[node name="AlmondSprite" type="AnimatedSprite2D" parent="2DGame/ItemAlmond"]
+sprite_frames = SubResource("SpriteFrames_o4l3h")
 
 [connection signal="visibility_changed" from="MainMenu" to="MainMenu" method="on_toggle_visibility"]
 [connection signal="pressed" from="MainMenu/MenuButtons/StartButton" to="." method="new_game"]
