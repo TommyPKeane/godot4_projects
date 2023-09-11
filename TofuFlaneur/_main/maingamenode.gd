@@ -35,6 +35,8 @@ func new_game():
 	_reset_user_score()
 	$"MainMenu".hide()
 	$"2DGame".start()
+	$"Soundtrack-001".play()
+	$"Camera2D".make_current()
 	return
 
 func game_over():

@@ -27,6 +27,13 @@ window/size/borderless=true
 window/size/transparent=true
 window/size/extend_to_title=true
 window/stretch/mode="canvas_items"
+window/stretch/aspect="keep_width"
+
+[importer_defaults]
+
+oggvorbisstr={
+"loop": true
+}
 
 [input]
 
@@ -86,11 +93,14 @@ pointing/emulate_mouse_from_touch=false
 
 [physics]
 
+2d/run_on_separate_thread=true
 2d/default_gravity=9.8
+common/enable_object_picking=false
 
 [rendering]
 
 textures/canvas_textures/default_texture_filter=3
+driver/threads/thread_model=2
 textures/vram_compression/import_s3tc_bptc=true
 textures/vram_compression/import_etc2_astc=true
 textures/lossless_compression/force_png=true
