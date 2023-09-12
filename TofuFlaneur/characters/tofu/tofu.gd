@@ -1,138 +1,84 @@
+# Tofu Character
+#
+# References:
+# - https://www.youtube.com/watch?v=fuGiJdMrCAk
 extends CharacterBody2D
 
-enum Actions {
-	NULL = -1,
-	PREACH = 0,
-	SHARE_DOCUMENT = 1,
-	MOVE = 2,
-	IDLE = 3,
-	STUNNED = 4,
-}
-
-class UserAction:
-	var crnt_state: Actions
-	var prev_state: Actions
-	var animation_active: bool
-	
-	func _init(init_state: Actions):
-		self.crnt_state = init_state
-		self.prev_state = Actions.NULL
-		self.animation_active = false
-		return
-		
-	func loop_animation():
-		self.animation_active = false
-		return
-		
-	func finish_animation():
-		self.animation_active = false
-		return
-		
-	func change_to_state(new_state: Actions):
-		var state_changed = false
-		var same_state = new_state == self.crnt_state
-		if same_state or self.animation_active:
-			state_changed = false
-		else:
-			self.prev_state = self.crnt_state
-			self.crnt_state = new_state
-			self.animation_active = true
-			state_changed = true
-		return state_changed
-		
-	func get_animation_name():
-		var animation_name = ""
-		match self.crnt_state:
-			Actions.PREACH:
-				animation_name = "preach"
-			Actions.SHARE_DOCUMENT:
-				animation_name = "share_document"
-			Actions.MOVE:
-				animation_name = "walk"
-			Actions.IDLE:
-				animation_name = "idle"
-			Actions.STUNNED:
-				animation_name = "stunned"
-		return animation_name
+# Exports
+@export var screen_size: Vector2
 
 
-const SPEED = 50.0  # [pixels]/[frame]
-const JUMP_VELOCITY = -400.0
-var screen_size: Vector2
-var tofu_state: UserAction
+# Class Member Variables
+var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")  # Get the gravity from the project settings to be synced with RigidBody nodes.
+var direction: Vector2
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-
-
-func _input(event):
-	var state_changed = false
-	if event.is_action_pressed("tofu_move_right"):
-		$"TofuSprite".flip_h = false
-		velocity.x += 1
-		state_changed = tofu_state.change_to_state(Actions.MOVE)
-	elif event.is_action_pressed("tofu_move_left"):
-		$"TofuSprite".flip_h = true
-		velocity.x -= 1
-		state_changed = tofu_state.change_to_state(Actions.MOVE)
-	elif event.is_action_pressed("tofu_jump"):
-		velocity.y -= 1
-		state_changed = tofu_state.change_to_state(Actions.MOVE)
-	else:
-		velocity = Vector2.ZERO
-		state_changed = tofu_state.change_to_state(Actions.IDLE)
-
-	if state_changed:
-		$"TofuSprite".animation = tofu_state.get_animation_name()
-	else:
-		pass
-	
-	if event.is_action_pressed("tofu_preach"):
-		pass
-	elif event.is_action_pressed("tofu_share_document"):
-		pass
-	else:
-		pass
-	return
-
-func _physics_process(delta: float):
-	_input(Input)
-	if velocity.length() > 0:
-		velocity = velocity.normalized() * SPEED
-	else:
-		pass
-	
-	position += velocity * delta
-	position.x = clamp(position.x, 128, screen_size.x - 128)
-	position.y = clamp(position.y, 128, screen_size.y - 128)
-	
-	# user_action_state = Actions.IDLE
-	# move_and_slide()
-	return
-
-func _ready():
-	tofu_state = UserAction.new(Actions.IDLE)
-	screen_size = get_viewport_rect().size
-	hide()
-	return
 
 func initialize(start_position):
-	position = start_position
-	velocity = Vector2.ZERO
+	self.position = start_position
+	self.velocity = Vector2.ZERO
+	self.direction = Vector2.ZERO
 	$"TofuCollisionPolygon".disabled = false
-	show()
-	$"TofuSprite".animation = tofu_state.get_animation_name()
-	$"TofuSprite".animation_looped.connect(tofu_state.loop_animation)
-	$"TofuSprite".animation_finished.connect(tofu_state.finish_animation)
-	$"TofuSprite".play()
+	$"TofuSpriteAnimationTree".active = true
+	$"DebugElements/AnimationLabel".label_ready($"TofuStateMachine")
+	$"DebugElements/StateMachineLabel".label_ready($"TofuStateMachine")
+	$"TofuStateMachine".state_machine_ready(
+		self,
+		$"TofuSpriteAnimationPlayer",
+		$"TofuSpriteAnimationTree",
+	)
+	self.show()
+	set_physics_process(true)
+	set_process(true)
+	set_process_input(true)
 	return
-	
-func hit():
-	$"StunnedTimer".start()
-	# user_action_state = Actions.STUNNED
-	await $"StunnedTimer".timeout
+
+
+func update_direction():
+	$"TofuSprite".flip_h = (self.direction.x < 0)
+	$"TofuSprite".flip_v = false
 	return
+
+
+func update_animation_tree_config():
+	$"TofuSpriteAnimationTree".set(
+		"parameters/MovingBlend1D/blend_position",
+		self.direction.x,
+	)
+	return
+
+
+func _input(event: InputEvent):
+	return
+
 	
-func die():
-	$"TofuSprite".stop()
+func _process(delta: float):
+	return
+
+
+func _physics_process(delta: float):
+	self.direction = Input.get_vector("left", "right", "up", "down")
+	update_direction()
+	if self.is_on_floor():
+		self.velocity += gravity * delta
+	else:
+		pass
+	if self.direction.x != 0 && $"TofuStateMachine".can_move():
+		self.velocity.x = self.direction.x * $"TofuStateMachine".walking_velocity_px_fr
+	else:
+#		self.velocity.x = move_toward(self.velocity.x, 0, $"TofuStateMachine".walking_velocity_px_fr)
+		pass
+	self.position += self.velocity * delta
+	self.position.x = clamp(self.position.x, 128, screen_size.x - 128)
+	self.position.y = clamp(self.position.y, 128, screen_size.y - 128)
+	move_and_slide()
+	update_animation_tree_config()
+	return
+
+
+func _ready():
+	screen_size = get_viewport_rect().size
+	hide()
+	set_physics_process(false)
+	set_process(false)
+	set_process_input(false)
 	return

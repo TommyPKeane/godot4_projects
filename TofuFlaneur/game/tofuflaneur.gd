@@ -13,7 +13,8 @@ var user_score: Dictionary
 var game_options: Dictionary
 
 func _ready():
-	$MainMenu.show()
+	# $MainMenu.show()  # TODO: Rebuild the Menus (oops, i deleted everything)
+	self.new_game()
 	return
 
 func _reset_user_score():
@@ -33,10 +34,10 @@ func modify_user_score(score_type: UserScore, offset: int):
 
 func new_game():
 	_reset_user_score()
-	$"MainMenu".hide()
-	$"2DGame".start()
-	$"Soundtrack-001".play()
-	$"Camera2D".make_current()
+	# $"MainMenu".hide()
+	$"game_main".start()
+	# $"Soundtrack-001".play()
+	# $"Camera2D".make_current()
 	return
 
 func game_over():

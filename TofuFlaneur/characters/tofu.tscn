@@ -1,0 +1,326 @@
+[gd_scene load_steps=24 format=3 uid="uid://c80dee8vh5fu4"]
+
+[ext_resource type="Texture2D" uid="uid://xm5j2m7odnfu" path="res://characters/tofu/tofu-20230417-idle.png" id="1_16ae6"]
+[ext_resource type="Script" path="res://characters/tofu/tofu.gd" id="1_hch5a"]
+[ext_resource type="Texture2D" uid="uid://gvussi8v8tpb" path="res://characters/tofu/tofu-20230417-stunned.png" id="2_dghw4"]
+[ext_resource type="Texture2D" uid="uid://bm3gdy64jhsx0" path="res://characters/tofu/tofu-20230417-walking.png" id="3_w2qwi"]
+[ext_resource type="Script" path="res://characters/tofu/TofuStateMachine.gd" id="5_6artb"]
+[ext_resource type="Script" path="res://characters/tofu/TofuIdle.gd" id="6_kb5a0"]
+[ext_resource type="Script" path="res://characters/tofu/TofuWalking.gd" id="7_1wh18"]
+[ext_resource type="Script" path="res://characters/tofu/TofuStunned.gd" id="8_4y54k"]
+[ext_resource type="Script" path="res://characters/tofu/TofuSeasoning.gd" id="9_0yh7o"]
+[ext_resource type="Script" path="res://characters/tofu/debug_StateMachineLabel.gd" id="10_4icbl"]
+[ext_resource type="Script" path="res://characters/tofu/TofuJump.gd" id="10_7t5rc"]
+[ext_resource type="Script" path="res://characters/tofu/debug_AnimationLabel.gd" id="11_k3vsd"]
+
+[sub_resource type="Animation" id="Animation_xa7wg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TofuSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_16ae6")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TofuSprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TofuSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TofuSprite:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TofuCollisionPolygon:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.649414, 0.5858)]
+}
+
+[sub_resource type="Animation" id="Animation_sae46"]
+resource_name = "idle"
+length = 1.00003
+loop_mode = 1
+step = 0.333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TofuSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_16ae6")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TofuSprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TofuSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.333333, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_fo45p"]
+resource_name = "stunned"
+length = 1.28573
+loop_mode = 1
+step = 0.142857
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TofuSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_dghw4")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TofuSprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TofuSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.142857, 0.285714, 0.428571, 0.571429, 0.714286, 0.857143),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+
+[sub_resource type="Animation" id="Animation_q56xi"]
+resource_name = "walk"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TofuSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_w2qwi")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TofuSprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [10]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TofuSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TofuSprite:rotation")
+tracks/3/interp = 4
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.141372, 0.0, 0.0698132, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TofuCollisionPolygon:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.619701, 0.559016), Vector2(0.595703, 0.566406), Vector2(0.636132, 0.561927), Vector2(0.681251, 0.56737), Vector2(0.611173, 0.59716), Vector2(0.595703, 0.532432), Vector2(0.603641, 0.546875), Vector2(0.595703, 0.595703), Vector2(0.620117, 0.55664), Vector2(0.665283, 0.541992), Vector2(0.655516, 0.54732)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a5oye"]
+_data = {
+"RESET": SubResource("Animation_xa7wg"),
+"idle": SubResource("Animation_sae46"),
+"stunned": SubResource("Animation_fo45p"),
+"walk": SubResource("Animation_q56xi")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tjrso"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kpuwt"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8yabx"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_rx5d3"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_tjrso")
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_kpuwt")
+blend_point_1/pos = 0.0
+blend_point_2/node = SubResource("AnimationNodeAnimation_8yabx")
+blend_point_2/pos = 1.0
+blend_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v1kc3"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_twrog"]
+states/MovingBlend1D/node = SubResource("AnimationNodeBlendSpace1D_rx5d3")
+states/MovingBlend1D/position = Vector2(378, 101.875)
+transitions = ["Start", "MovingBlend1D", SubResource("AnimationNodeStateMachineTransition_v1kc3")]
+graph_offset = Vector2(56.34, -53.295)
+
+[node name="Tofu" type="CharacterBody2D"]
+script = ExtResource("1_hch5a")
+metadata/position = Vector2(0, 0)
+metadata/velocity = Vector2(0, 0)
+
+[node name="TofuCollisionPolygon" type="CollisionPolygon2D" parent="."]
+position = Vector2(28.4275, 49.9259)
+scale = Vector2(0.649414, 0.5858)
+polygon = PackedVector2Array(0, 0, 128, 2.08165e-12, 128, 128, 2.08165e-12, 128)
+disabled = true
+
+[node name="StunnedTimer" type="Timer" parent="."]
+
+[node name="TofuSprite" type="Sprite2D" parent="."]
+position = Vector2(65, 62)
+texture = ExtResource("1_16ae6")
+hframes = 3
+
+[node name="TofuSpriteAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_a5oye")
+}
+
+[node name="TofuSpriteAnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_twrog")
+anim_player = NodePath("../TofuSpriteAnimationPlayer")
+parameters/MovingBlend1D/blend_position = 0
+
+[node name="TofuStateMachine" type="Node" parent="."]
+script = ExtResource("5_6artb")
+
+[node name="TofuIdle" type="Node" parent="TofuStateMachine"]
+script = ExtResource("6_kb5a0")
+
+[node name="TofuWalking" type="Node" parent="TofuStateMachine"]
+script = ExtResource("7_1wh18")
+
+[node name="TofuStunned" type="Node" parent="TofuStateMachine"]
+script = ExtResource("8_4y54k")
+
+[node name="TofuSeasoning" type="Node" parent="TofuStateMachine"]
+script = ExtResource("9_0yh7o")
+
+[node name="TofuJump" type="Node" parent="TofuStateMachine"]
+script = ExtResource("10_7t5rc")
+
+[node name="DebugElements" type="Node" parent="."]
+
+[node name="StateMachineLabel" type="Label" parent="DebugElements"]
+anchors_preset = -1
+anchor_right = 0.085
+offset_left = 3.0
+offset_top = -19.0
+offset_right = 24.3
+offset_bottom = 7.0
+text = "Current State: ???"
+script = ExtResource("10_4icbl")
+
+[node name="AnimationLabel" type="Label" parent="DebugElements"]
+offset_left = 1.0
+offset_top = -47.0
+offset_right = 176.0
+offset_bottom = -18.0
+text = "Current Animation: ???"
+script = ExtResource("11_k3vsd")

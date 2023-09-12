@@ -1,15 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://db2us4eftf7ck"]
+[gd_scene load_steps=3 format=3 uid="uid://cnulnducnitrg"]
 
-[ext_resource type="PackedScene" uid="uid://coo3lrmajxw2q" path="res://_scenes/tofu.tscn" id="1_vhe0t"]
+[ext_resource type="Script" path="res://game/game_main.gd" id="1_leei8"]
+[ext_resource type="PackedScene" uid="uid://c80dee8vh5fu4" path="res://characters/tofu.tscn" id="1_vhe0t"]
 
-[node name="2DGame" type="Node2D"]
+[node name="game_main" type="Node2D"]
+script = ExtResource("1_leei8")
 
 [node name="Tofu" parent="." instance=ExtResource("1_vhe0t")]
 visible = false
 
 [node name="UserStartPosition" type="Marker2D" parent="."]
 visible = false
-position = Vector2(89, 500)
+position = Vector2(85, 1006)
 
 [node name="BackgroundFar" type="ParallaxBackground" parent="."]
 

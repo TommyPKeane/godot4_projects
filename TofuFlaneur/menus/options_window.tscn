@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://cctvy74eisv72"]
+[gd_scene load_steps=2 format=3 uid="uid://cctvy74eisv72"]
+
+[ext_resource type="Script" path="res://menus/options_window.gd" id="1_am8g3"]
 
 [node name="OptionsWindow" type="Window"]
+script = ExtResource("1_am8g3")
