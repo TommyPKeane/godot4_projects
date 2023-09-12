@@ -17,5 +17,6 @@ func _ready():
 
 
 func _process(delta):
-	# self.text = "Current State: " + character_state_machine.current_state.name
+	self.position = character_state_machine.current_character.position - Vector2(0, 32)
+	self.text = "Current State: " + character_state_machine.current_state.name
 	return
