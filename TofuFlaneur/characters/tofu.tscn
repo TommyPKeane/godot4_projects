@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c80dee8vh5fu4"]
+[gd_scene load_steps=25 format=3 uid="uid://c80dee8vh5fu4"]
 
 [ext_resource type="Texture2D" uid="uid://xm5j2m7odnfu" path="res://characters/tofu/tofu-20230417-idle.png" id="1_16ae6"]
 [ext_resource type="Script" path="res://characters/tofu/tofu.gd" id="1_hch5a"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://characters/tofu/TofuSeasoning.gd" id="9_0yh7o"]
 [ext_resource type="Script" path="res://characters/tofu/debug_StateMachineLabel.gd" id="10_4icbl"]
 [ext_resource type="Script" path="res://characters/tofu/TofuJump.gd" id="10_7t5rc"]
+[ext_resource type="Script" path="res://characters/tofu/debug.gd" id="11_eme0d"]
 [ext_resource type="Script" path="res://characters/tofu/debug_AnimationLabel.gd" id="11_k3vsd"]
 
 [sub_resource type="Animation" id="Animation_xa7wg"]
@@ -306,6 +307,7 @@ script = ExtResource("9_0yh7o")
 script = ExtResource("10_7t5rc")
 
 [node name="DebugElements" type="Node" parent="."]
+script = ExtResource("11_eme0d")
 
 [node name="StateMachineLabel" type="Label" parent="DebugElements"]
 anchors_preset = -1

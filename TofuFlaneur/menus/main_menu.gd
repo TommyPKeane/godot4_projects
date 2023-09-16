@@ -13,7 +13,7 @@ func on_toggle_visibility():
 	return
 
 func hide_main_menu():
-	$GameTitle.stop()
+	$"VBoxContainer/GameTitle".stop()
 	return
 	
 func show_main_menu():

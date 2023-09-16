@@ -19,8 +19,7 @@ func initialize(start_position):
 	self.direction = Vector2.ZERO
 	$"TofuCollisionPolygon".disabled = false
 	$"TofuSpriteAnimationTree".active = true
-	$"DebugElements/AnimationLabel".label_ready($"TofuStateMachine")
-	$"DebugElements/StateMachineLabel".label_ready($"TofuStateMachine")
+	$"DebugElements".initialize_debug($"TofuStateMachine")
 	$"TofuStateMachine".state_machine_ready(
 		self,
 		$"TofuSpriteAnimationPlayer",

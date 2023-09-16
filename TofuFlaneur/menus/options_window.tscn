@@ -3,4 +3,7 @@
 [ext_resource type="Script" path="res://menus/options_window.gd" id="1_am8g3"]
 
 [node name="OptionsWindow" type="Window"]
+initial_position = 2
+visible = false
+borderless = true
 script = ExtResource("1_am8g3")

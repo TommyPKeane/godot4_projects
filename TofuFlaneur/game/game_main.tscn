@@ -1,7 +1,45 @@
-[gd_scene load_steps=3 format=3 uid="uid://cnulnducnitrg"]
+[gd_scene load_steps=10 format=3 uid="uid://cnulnducnitrg"]
 
 [ext_resource type="Script" path="res://game/game_main.gd" id="1_leei8"]
 [ext_resource type="PackedScene" uid="uid://c80dee8vh5fu4" path="res://characters/tofu.tscn" id="1_vhe0t"]
+[ext_resource type="Script" path="res://backgrounds/Background.gd" id="3_i0qdd"]
+[ext_resource type="Texture2D" uid="uid://l82q2kn2dy3v" path="res://items/acorn.png" id="4_fjcv4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kpm3e"]
+atlas = ExtResource("4_fjcv4")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ehgy"]
+atlas = ExtResource("4_fjcv4")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4fyv6"]
+atlas = ExtResource("4_fjcv4")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvc7q"]
+atlas = ExtResource("4_fjcv4")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0m121"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kpm3e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ehgy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4fyv6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lvc7q")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
 
 [node name="game_main" type="Node2D"]
 script = ExtResource("1_leei8")
@@ -13,8 +51,32 @@ visible = false
 visible = false
 position = Vector2(85, 1006)
 
-[node name="BackgroundFar" type="ParallaxBackground" parent="."]
+[node name="Background" type="Node" parent="."]
+script = ExtResource("3_i0qdd")
 
-[node name="BackgroundMiddle" type="ParallaxBackground" parent="."]
+[node name="BackgroundFar" type="ParallaxBackground" parent="Background"]
 
-[node name="BackgroundNear" type="ParallaxBackground" parent="."]
+[node name="BackgroundMiddle" type="ParallaxBackground" parent="Background"]
+
+[node name="BackgroundNear" type="ParallaxBackground" parent="Background"]
+
+[node name="Foreground" type="Node" parent="."]
+
+[node name="HUD" type="CanvasLayer" parent="Foreground"]
+
+[node name="HUDTopContainer" type="HBoxContainer" parent="Foreground/HUD"]
+offset_right = 1614.0
+offset_bottom = 124.0
+
+[node name="HUDBottomContainer" type="HBoxContainer" parent="Foreground/HUD"]
+offset_left = -4.0
+offset_top = 990.0
+offset_right = 1614.0
+offset_bottom = 1074.0
+
+[node name="TofuSpicesContainer" type="Node2D" parent="Foreground/HUD/HUDBottomContainer"]
+
+[node name="SpiceSprite" type="AnimatedSprite2D" parent="Foreground/HUD/HUDBottomContainer/TofuSpicesContainer"]
+position = Vector2(32, 47)
+sprite_frames = SubResource("SpriteFrames_0m121")
+frame_progress = 0.942259
