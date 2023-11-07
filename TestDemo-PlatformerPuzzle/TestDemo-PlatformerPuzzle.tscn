@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://dty2ay6khuf4w"]
+
+[ext_resource type="Script" path="res://TestDemo-PlatformerPuzzle.gd" id="1_sxm1k"]
+[ext_resource type="Script" path="res://Menu-Main.gd" id="2_14f7s"]
+[ext_resource type="Script" path="res://Menu-Pause.gd" id="3_pd0mk"]
+
+[node name="TestDemo-PlatformerPuzzle" type="Node"]
+script = ExtResource("1_sxm1k")
+
+[node name="Menu-Main" type="Node2D" parent="."]
+script = ExtResource("2_14f7s")
+
+[node name="LevelSelectContainer" type="GridContainer" parent="Menu-Main"]
+anchors_preset = -1
+anchor_left = 0.375
+anchor_top = 0.474
+anchor_right = 0.663
+anchor_bottom = 0.534
+offset_left = 287.816
+offset_top = 242.488
+offset_right = 508.816
+offset_bottom = 273.488
+grow_horizontal = 2
+columns = 3
+
+[node name="Level00Button" type="Button" parent="Menu-Main/LevelSelectContainer"]
+layout_mode = 2
+text = "Level 00"
+
+[node name="Level01Button" type="Button" parent="Menu-Main/LevelSelectContainer"]
+layout_mode = 2
+text = "Level 01"
+
+[node name="Level02Button" type="Button" parent="Menu-Main/LevelSelectContainer"]
+layout_mode = 2
+text = "Level 02"
+
+[node name="Menu-Pause" type="Node2D" parent="."]
+script = ExtResource("3_pd0mk")
+
+[node name="HUD" type="Node2D" parent="."]
+
+[connection signal="pressed" from="Menu-Main/LevelSelectContainer/Level00Button" to="Menu-Main" method="on_level_00_select_pressed"]

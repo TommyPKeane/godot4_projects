@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfqg7t2vm506c"]
+
+[ext_resource type="PackedScene" uid="uid://bdniyhnl7ecg" path="res://backgrounds/PlatformPassthrough.tscn" id="1_3o1gv"]
+
+[node name="Level00" type="Node2D"]
+
+[node name="PlatformA" parent="." instance=ExtResource("1_3o1gv")]
+position = Vector2(-64, 487)
+
+[node name="PlatformA2" parent="." instance=ExtResource("1_3o1gv")]
+position = Vector2(129, 487)
+
+[node name="PlatformA3" parent="." instance=ExtResource("1_3o1gv")]
+position = Vector2(305, 487)
+
+[node name="PlatformA4" parent="." instance=ExtResource("1_3o1gv")]
+position = Vector2(480, 487)
+
+[node name="PlatformA5" parent="." instance=ExtResource("1_3o1gv")]
+position = Vector2(239, 389)

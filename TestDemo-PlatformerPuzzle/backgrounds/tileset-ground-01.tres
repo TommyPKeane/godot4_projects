@@ -1,0 +1,15 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://c65dpdyt2lypm"]
+
+[ext_resource type="Texture2D" uid="uid://4bdmrvbvmao7" path="res://backgrounds/tilemap-128x128-tiles-16x16-ground.png" id="1_lq1ny"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nnmsd"]
+resource_name = "tileset-ground-16x16"
+texture = ExtResource("1_lq1ny")
+use_texture_padding = false
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+
+[resource]
+sources/0 = SubResource("TileSetAtlasSource_nnmsd")

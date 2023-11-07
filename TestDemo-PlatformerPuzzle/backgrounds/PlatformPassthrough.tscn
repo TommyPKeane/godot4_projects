@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdniyhnl7ecg"]
+
+[ext_resource type="TileSet" uid="uid://c65dpdyt2lypm" path="res://backgrounds/tileset-ground-01.tres" id="1_yisgu"]
+
+[node name="PlatformPassthrough" type="Node2D"]
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AnimatableBody2D"]
+position = Vector2(32, 24)
+scale = Vector2(3.63139, 3.63139)
+polygon = PackedVector2Array(-8.81205, 2.20301, 39.6542, 2.20301, 39.6542, -6.60903, -8.81205, -6.60903)
+one_way_collision = true
+one_way_collision_margin = 0.0
+
+[node name="TileMap" type="TileMap" parent="AnimatableBody2D"]
+tile_set = ExtResource("1_yisgu")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 65536, 0, 1, 65536, 0, 2, 65536, 0, 3, 65536, 0, 4, 65536, 0, 5, 65536, 0, 6, 65536, 0, 7, 65536, 0, 8, 65536, 0, 9, 65536, 0, 10, 65536, 0, 65536, 131072, 0, 65537, 131072, 0, 65538, 0, 0, 65539, 131072, 0, 65540, 131072, 0, 65541, 131072, 0, 65542, 131072, 0, 65543, 131072, 0, 65544, 131072, 0, 65545, 131072, 0, 65546, 131072, 0, 131072, 131072, 0, 131073, 131072, 0, 131074, 131072, 0, 131075, 131072, 0, 131076, 131072, 0, 131077, 131072, 0, 131078, 131072, 0, 131079, 131072, 0, 131080, 131072, 0, 131081, 131072, 0, 131082, 131072, 0)
